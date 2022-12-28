@@ -1,0 +1,3 @@
+domain,passed TLS Check,days since certificate start,days until certificate expire
+google.com,TRUE,30,54
+otho.dev,TRUE,46,44
