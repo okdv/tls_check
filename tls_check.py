@@ -52,7 +52,6 @@ with open(from_file, newline='') as file:
                 pass
 
 with open(to_file, 'w', newline='') as res_file:
-    print(type(res_list))
     wr = csv.writer(res_file, quoting=csv.QUOTE_ALL)
     wr.writerow(['domain', 'passed TLS check', 'days since certificate start', 'days until certificate expire'])
     for res in res_list:
