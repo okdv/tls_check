@@ -15,7 +15,6 @@ to_file = varArgs['to']
 col = varArgs['column']
 context = ssl.create_default_context()
 res_list = []
-socket.settimeout(60)
 
 def validate(hostname):
     with socket.create_connection((hostname, '443')) as sock:
