@@ -41,7 +41,7 @@ with open(from_file, newline='') as file:
         reader = csv.DictReader(file)
 
     for row in reader:
-        hostname_search = re.search('^(?:http[s]?\:\/\/)?([a-zA-Z0-9-.:]*).*$', row[col], re.IGNORECASE)
+        hostname_search = re.search('^(?:http\:\/\/)?([a-zA-Z0-9-.:]*).*$', row[col], re.IGNORECASE)
         if hostname_search:
             hostname = hostname_search.group(1)
             try:
