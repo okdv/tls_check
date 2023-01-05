@@ -17,7 +17,7 @@ context = ssl.create_default_context()
 res_list = []
 
 def validate(hostname):
-    with socket.create_connection((hostname, '443')) as sock:
+    with socket.create_connection((hostname, '443'), timeout=30) as sock:
         with context.wrap_socket(sock, server_hostname=hostname) as ssock:
             data = ssock.getpeercert()
             valid_from = datetime.strptime(data['notBefore'], '%b %d %H:%M:%S %Y %Z').date()
