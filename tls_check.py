@@ -32,27 +32,26 @@ def validate(hostname):
                 "to": str(x_days_to)
             }
 
-with open(from_file, newline='') as file:
+with open(from_file, "r", newline='') as infile, open(to_file, "w", encoding="utf8", newline='') as outfile:
+    domains = set()
+    writer = csv.writer(outfile)
     try:
         col = int(col)
-        reader = csv.reader(file)
-    except ValueError:
+        reader = csv.reader(infile)
+    except: 
         col = str(col)
-        reader = csv.DictReader(file)
+        reader = csv.DictReader(infile)
 
+    writer.writerow(['domain', 'passed TLS check', 'days since certificate start', 'days until certificate expire'])
     for row in reader:
         hostname_search = re.search('^(?:https\:\/\/)?([a-zA-Z0-9-.:]*).*$', row[col], re.IGNORECASE)
-        if hostname_search:
-            hostname = hostname_search.group(1)
-            try:
-                validation_obj = validate(hostname)
-                print(validation_obj);
-                res_list.append(validation_obj)
-            except:
-                pass
+        if hostname_search and hostname_search.group(1):
+            domains.add(hostname_search.group(1))
 
-with open(to_file, 'w', newline='') as res_file:
-    wr = csv.writer(res_file, quoting=csv.QUOTE_ALL)
-    wr.writerow(['domain', 'passed TLS check', 'days since certificate start', 'days until certificate expire'])
-    for res in res_list:
-        wr.writerow([res['domain'], str(res['valid']), res['since'], res['to']])
+    for domain in domains:
+        try:
+            obj = validate(domain)
+            print(obj)
+            writer.writerow([res['domain'], str(res['valid']), res['since'], res['to']])        
+        except:
+            pass
