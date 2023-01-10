@@ -14,7 +14,6 @@ from_file = varArgs['from']
 to_file = varArgs['to']
 col = varArgs['column']
 context = ssl.create_default_context()
-res_list = []
 
 def validate(hostname):
     with socket.create_connection((hostname, '443'), timeout=30) as sock:
