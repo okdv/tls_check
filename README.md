@@ -14,9 +14,7 @@ git clone https://git.otho.dev/okdv/tls_check.git
 # github
 git clone https://github.com/okdv/tls_check.git
 ```
-Option B)  Download repo from [git.otho.dev](https://git.otho.dev/okdv/tls_check) or [github](https://github.com/okdv/tls_check), and unzip
-![download from git.otho.dev](https://github.com/okdv/tls_check/assets/forgejo_download.png)
-![download from github](https://github.com/okdv/tls_check/assets/github_download.png)
+Option B)  Download repo from [git.otho.dev](https://git.otho.dev/okdv/tls_check/archive/main.zip) or [github](https://github.com/okdv/tls_check/archive/refs/heads/main.zip), and unzip
 
 ## Usage
 
