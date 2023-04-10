@@ -90,3 +90,6 @@ with open(args.source, "r", newline='') as infile, open(args.dest, "w", encoding
             printer(domain + ": Unable to validate, likely due to a timeout, unexpected response or invalid domain", True)
             writer.writerow([domain, "False", "", "", "Possibly timed out, invalid response, or already expired certificate"])
             pass
+
+    infile.close()
+    outfile.close()
