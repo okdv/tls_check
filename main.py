@@ -2,20 +2,20 @@ from urllib.request import Request, urlopen, ssl, socket
 from urllib.error import URLError, HTTPError
 from datetime import datetime, date
 from collections import OrderedDict
-import json, argparse, csv, re
+import json, argparse, csv, re, os
 
 parser = argparse.ArgumentParser(description="bulk validate TLS certificates")
-parser.add_argument('-s', '--source', type=str, action="store", help="file path to csv of domains", default="data.csv")
-parser.add_argument('-d', '--dest', type=str, action="store", help="file path to csv result of TLS validations", default="results.csv")
-parser.add_argument('-c', '--column', action="store", help="header or index for column containing URLs to validate", default=0)
-parser.add_argument('-t', '--timeout', action="store", type=int, help="skip domains if response exceeds X seconds", default=30)
-parser.add_argument('-u', '--url-query', action="store", type=str, help="query URL for third party TLS validation service, use [DOMAIN] to inject domain into URL", default="https://www.ssllabs.com/ssltest/analyze.html?d=[DOMAIN]"),
+parser.add_argument('-s', '--source', type=str, action="store", help="file path to csv of domains", default=os.environ.get('TLS_CHECK_SOURCE', 'data.csv'))
+parser.add_argument('-d', '--dest', type=str, action="store", help="file path to csv result of TLS validations", default=os.environ.get('TLS_CHECK_DEST', 'results.csv'))
+parser.add_argument('-c', '--column', action="store", help="header or index for column containing URLs to validate", default=os.environ.get('TLS_CHECK_COLUMN', 0))
+parser.add_argument('-t', '--timeout', action="store", type=int, help="skip domains if response exceeds X seconds", default=os.environ.get('TLS_CHECK_TIMEOUT', 30))
+parser.add_argument('-u', '--url-query', action="store", type=str, help="query URL for third party TLS validation service, use [DOMAIN] to inject domain into URL", default=os.environ.get('TLS_CHECK_URL_QUERY', 'https://www.ssllabs.com/ssltest/analyze.html?d=[DOMAIN]')),
 parser.add_argument('-p', '--preserve', action="store_true", help="preserve columns from --source, append after generated colomns in --dest")
 
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-v', '--verbose', action="store_true", help="log everything")
 group.add_argument('-q', '--quiet', action="store_true", help="log nothing")
-group.add_argument('-T', '--threshold', action="store", type=int, help="log if expires within X days or less", default=7)
+group.add_argument('-T', '--threshold', action="store", type=int, help="log if expires within X days or less", default=os.environ.get('TLS_CHECK_THRESHOLD', 7))
 
 args = parser.parse_args()
 context = ssl.create_default_context()

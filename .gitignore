@@ -1,6 +1,6 @@
 .env*
 !.env.example
-*.csv
+*.csv*
 !dummy-data.csv
 !dummy-results.csv
 .~lock*
