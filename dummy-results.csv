@@ -1,4 +1,4 @@
-domain,passed TLS check,days since certificate start,days until certificate expire
-google.com,True,21,63,https://www.ssllabs.com/ssltest/analyze.html?d=google.com
-fdsiujncvsdiucnsdicsncs.net,False,,,"Possibly timed out, invalid response, or already expired certificate"
-otho.dev,True,31,59,https://www.ssllabs.com/ssltest/analyze.html?d=otho.dev
+domain,passed TLS check,days since certificate start,days until certificate expire,external query url,Extra Col,url
+google.com,True,21,63,https://www.ssllabs.com/ssltest/analyze.html?d=google.com,A,https://google.com
+fdsiujncvsdiucnsdicsncs.net,False,,,"Possibly timed out, invalid response, or already expired certificate",https://www.ssllabs.com/ssltest/analyze.html?d=fdsiujncvsdiucnsdicsncs.net,B,https://fdsiujncvsdiucnsdicsncs.net
+otho.dev,True,31,59,https://www.ssllabs.com/ssltest/analyze.html?d=otho.dev,C,https://otho.dev
