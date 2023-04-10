@@ -1,3 +1,4 @@
-domain,passed TLS Check,days since certificate start,days until certificate expire
-google.com,TRUE,30,54
-otho.dev,TRUE,46,44
+domain,passed TLS check,days since certificate start,days until certificate expire
+google.com,True,21,63,https://www.ssllabs.com/ssltest/analyze.html?d=google.com
+fdsiujncvsdiucnsdicsncs.net,False,,,"Possibly timed out, invalid response, or already expired certificate"
+otho.dev,True,31,59,https://www.ssllabs.com/ssltest/analyze.html?d=otho.dev
